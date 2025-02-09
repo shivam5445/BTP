@@ -6,9 +6,8 @@ import org.springframework.data.neo4j.core.schema.Node;
 @Node
 public class Venue {
     @Id
-    private String id;
     private String name;
-    private String location;
+    private String type;
 
     // Getters and Setters
 }

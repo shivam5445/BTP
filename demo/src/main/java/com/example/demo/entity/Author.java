@@ -8,20 +8,10 @@ import java.util.List;
 @Node
 public class Author {
     @Id
-    private String id;
     private String name;
 
     @Relationship(type = "AUTHORED")
     private List<Publication> publications;
-
-    // Getters and Setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

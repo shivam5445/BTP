@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AuthorController {
@@ -16,8 +17,18 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping("/authors")
-    public String getAllAuthors(Model model) {
-        model.addAttribute("authors", authorService.getAllAuthors());
-        return "authorsView"; // This is the template name
+    public String getAuthors(@RequestParam(value = "letter", required = false) String letter, Model model) {
+        List<Author> authors;
+
+        if (letter != null && !letter.isEmpty()) {
+            authors = authorService.getAuthorsByLetter(letter);
+            model.addAttribute("selectedLetter", letter); // To highlight selected letter
+        } else {
+            authors = authorService.getAllAuthors();
+            model.addAttribute("selectedLetter", ""); // No letter selected
+        }
+
+        model.addAttribute("authors", authors);
+        return "authorsView";
     }
 }

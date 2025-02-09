@@ -15,5 +15,9 @@ public class AuthorService {
         return authorRepository.findAll();
     }
 
+    public List<Author> getAuthorsByLetter(String letter) {
+        return authorRepository.findAuthorsByStartingLetter(letter);
+    }
+
     // Additional methods as needed
 }

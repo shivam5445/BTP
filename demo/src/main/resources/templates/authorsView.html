@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <h2><i class="fa-solid fa-graduation-cap"></i>BTP</h2>
+        <h2><i class="fa-solid fa-graduation-cap"></i> BTP</h2>
         <nav>
             <a th:href="@{/home}"><i class="fas fa-home"></i> Home</a>
             <a th:href="@{/authors}" class="active"><i class="fa-solid fa-marker"></i> Author</a>
@@ -31,29 +31,46 @@
             <input type="text" id="jump-to" placeholder="Enter letter...">
         </div>
 
+        <!-- Manually Written Alphabet Navigation -->
         <div class="alphabet-nav">
-            <a href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a>
-            <a href="#">E</a><a href="#">F</a><a href="#">G</a><a href="#">H</a>
-            <a href="#">I</a><a href="#">J</a><a href="#">K</a><a href="#">L</a>
-            <a href="#">M</a><a href="#">N</a><a href="#">O</a><a href="#">P</a>
-            <a href="#">Q</a><a href="#">R</a><a href="#">S</a><a href="#">T</a>
-            <a href="#">U</a><a href="#">V</a><a href="#">W</a><a href="#">X</a>
-            <a href="#">Y</a><a href="#">Z</a>
+            <a th:href="@{/authors(letter='A')}" th:classappend="${selectedLetter == 'A' ? 'active' : ''}">A</a>
+            <a th:href="@{/authors(letter='B')}" th:classappend="${selectedLetter == 'B' ? 'active' : ''}">B</a>
+            <a th:href="@{/authors(letter='C')}" th:classappend="${selectedLetter == 'C' ? 'active' : ''}">C</a>
+            <a th:href="@{/authors(letter='D')}" th:classappend="${selectedLetter == 'D' ? 'active' : ''}">D</a>
+            <a th:href="@{/authors(letter='E')}" th:classappend="${selectedLetter == 'E' ? 'active' : ''}">E</a>
+            <a th:href="@{/authors(letter='F')}" th:classappend="${selectedLetter == 'F' ? 'active' : ''}">F</a>
+            <a th:href="@{/authors(letter='G')}" th:classappend="${selectedLetter == 'G' ? 'active' : ''}">G</a>
+            <a th:href="@{/authors(letter='H')}" th:classappend="${selectedLetter == 'H' ? 'active' : ''}">H</a>
+            <a th:href="@{/authors(letter='I')}" th:classappend="${selectedLetter == 'I' ? 'active' : ''}">I</a>
+            <a th:href="@{/authors(letter='J')}" th:classappend="${selectedLetter == 'J' ? 'active' : ''}">J</a>
+            <a th:href="@{/authors(letter='K')}" th:classappend="${selectedLetter == 'K' ? 'active' : ''}">K</a>
+            <a th:href="@{/authors(letter='L')}" th:classappend="${selectedLetter == 'L' ? 'active' : ''}">L</a>
+            <a th:href="@{/authors(letter='M')}" th:classappend="${selectedLetter == 'M' ? 'active' : ''}">M</a>
+            <a th:href="@{/authors(letter='N')}" th:classappend="${selectedLetter == 'N' ? 'active' : ''}">N</a>
+            <a th:href="@{/authors(letter='O')}" th:classappend="${selectedLetter == 'O' ? 'active' : ''}">O</a>
+            <a th:href="@{/authors(letter='P')}" th:classappend="${selectedLetter == 'P' ? 'active' : ''}">P</a>
+            <a th:href="@{/authors(letter='Q')}" th:classappend="${selectedLetter == 'Q' ? 'active' : ''}">Q</a>
+            <a th:href="@{/authors(letter='R')}" th:classappend="${selectedLetter == 'R' ? 'active' : ''}">R</a>
+            <a th:href="@{/authors(letter='S')}" th:classappend="${selectedLetter == 'S' ? 'active' : ''}">S</a>
+            <a th:href="@{/authors(letter='T')}" th:classappend="${selectedLetter == 'T' ? 'active' : ''}">T</a>
+            <a th:href="@{/authors(letter='U')}" th:classappend="${selectedLetter == 'U' ? 'active' : ''}">U</a>
+            <a th:href="@{/authors(letter='V')}" th:classappend="${selectedLetter == 'V' ? 'active' : ''}">V</a>
+            <a th:href="@{/authors(letter='W')}" th:classappend="${selectedLetter == 'W' ? 'active' : ''}">W</a>
+            <a th:href="@{/authors(letter='X')}" th:classappend="${selectedLetter == 'X' ? 'active' : ''}">X</a>
+            <a th:href="@{/authors(letter='Y')}" th:classappend="${selectedLetter == 'Y' ? 'active' : ''}">Y</a>
+            <a th:href="@{/authors(letter='Z')}" th:classappend="${selectedLetter == 'Z' ? 'active' : ''}">Z</a>
         </div>
         
-        
         <div class="author-list">
-            <div class="author-list">
-                <h2>Persons sorted by last name, starting from "A"</h2>
-            </div>
+            <h2 th:if="${selectedLetter}">Persons sorted by last name, starting from "<span th:text="${selectedLetter}"></span>"</h2>
+            <h2 th:unless="${selectedLetter}">All Authors</h2>
+
             <ul>
                 <li th:each="author : ${authors}">
                     <span th:text="${author.name}">Author Name</span>
                 </li>
             </ul>
         </div>
-        
-    
     </div>
     
     <footer>
@@ -61,4 +78,3 @@
     </footer>
 </body>
 </html>
-
