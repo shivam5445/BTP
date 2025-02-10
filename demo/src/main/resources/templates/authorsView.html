@@ -31,7 +31,7 @@
             <input type="text" id="jump-to" placeholder="Enter letter...">
         </div>
 
-        <!-- Manually Written Alphabet Navigation -->
+        
         <div class="alphabet-nav">
             <a th:href="@{/authors(letter='A')}" th:classappend="${selectedLetter == 'A' ? 'active' : ''}">A</a>
             <a th:href="@{/authors(letter='B')}" th:classappend="${selectedLetter == 'B' ? 'active' : ''}">B</a>
@@ -62,6 +62,7 @@
         </div>
         
         <div class="author-list">
+           
             <h2 th:if="${selectedLetter}">Persons sorted by last name, starting from "<span th:text="${selectedLetter}"></span>"</h2>
             <h2 th:unless="${selectedLetter}">All Authors</h2>
 
@@ -71,6 +72,7 @@
                 </li>
             </ul>
         </div>
+        
     </div>
     
     <footer>
