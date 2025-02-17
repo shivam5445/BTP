@@ -25,11 +25,12 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
-        
+        <!--
         <div class="publication-alphabet-filter">
             <label for="jump-to">Jump to publications with last name prefix: </label>
             <input type="text" id="jump-to" placeholder="Enter letter...">
         </div>
+    -->
 
             <div class="publication-alphabet-nav">
             <a th:href="@{/publications(letter='A')}" th:classappend="${selectedLetter == 'A' ? 'active' : ''}">A</a>
@@ -69,14 +70,16 @@
                         <h3 th:text="${publication.title}">Publication Title</h3>
                         <p>
                             <strong>Authors: </strong>
+
                             <span th:each="author, iterStat : ${publication.authors}">
-                                <span th:text="${author.name}"></span>
+                                <span th:text="${author}"></span>
                                 <span th:if="${!iterStat.last}">, </span>
                             </span>
                         </p>
-                    
-                        <button class="xmlbutton">XML</button>
-                        <button><a th:href="${publication.link}" target="_blank">View Publication</a></button>
+                        <div class="button-container">
+                        <button class="xml-button"><a th:href="@{/publication/xml(title=${publication.title})}" target="_blank">XML</a></button>
+                        <button class="view-button"><a th:href="${publication.link}" target="_blank">View</a></button>
+                        </div>
                     </div>
                 </li>
             </ul>

@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: auto;
 }
 
 .sidebar h2 {
@@ -140,9 +140,10 @@ footer {
     padding: 10px;
     font-size: 12px;
     color: #6c757d;
-    background-color: #f4f6fc;
-    position: absolute;
+    position: fixed; 
     bottom: 0;
-    width: calc(100% - 200px);
-    margin-left: 200px;
+    left: 0;
+    width: 100%; 
+    background-color: #f4f6fc;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }

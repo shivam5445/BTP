@@ -27,7 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 105vh;
+    height: auto;
 }
 
 .sidebar h2 {
@@ -102,25 +102,24 @@ body {
 --------------------------------------------------------------------
 
 
----------------------------------------------------------------------
+.xmlbutton {
+    position:absolute;
+    right: 34px;
+    top: 18%;
+    transform: translateY(-50%);
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 15px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
 
 .xmlbutton:hover {
     background-color: #0056b3;
-    .xmlbutton {
-        position:absolute;
-        right: 34px;
-        top: 18%;
-        transform: translateY(-50%);
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 15px 15px;
-        font-size: 15px;
-        border-radius: 10px;
-        cursor: pointer;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-    }
 }
 
 /* filter */
@@ -204,9 +203,10 @@ footer {
     padding: 10px;
     font-size: 12px;
     color: #6c757d;
-    position: absolute;
-    bottom: -100px;
-    width: calc(100% - 200px);
-    margin-left: 300px;
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%; 
     background-color: #f4f6fc;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }

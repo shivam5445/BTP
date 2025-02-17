@@ -28,6 +28,7 @@ public class PublicationController {
             model.addAttribute("selectedLetter", letter);
         } else {
             publications = publicationService.getAllPublications();
+            System.out.println("Publications with authors: " + publications);
             model.addAttribute("selectedLetter", "");
         }
 
