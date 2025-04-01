@@ -10,12 +10,13 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 public class Publication {
     @Id
     private String title;
-    private int year;
+    private String year;
     private String link; // Updated field name to match Neo4j
 
     // @Relationship(type = "WROTE", direction = Relationship.Direction.INCOMING)
     private List<String> authors; // Ensure authors list is properly populated
-
+    // @Relationship(type = "WROTE", direction = Relationship.Direction.OUTGOING)
+    // private List<Author> authors;
     // @Relationship(type = "PUBLISHED_IN", direction =
     // Relationship.Direction.OUTGOING)
     private Venue venue;
@@ -29,13 +30,13 @@ public class Publication {
         this.title = title;
     }
 
-    public int getYear() {
-        return year;
+    public int getYearAsInt() {
+        return year != null ? (int) Double.parseDouble(year) : 0;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
+    // public void setYear(int year) {
+    // this.year = year;
+    // }
 
     public String getLink() {
         return link;

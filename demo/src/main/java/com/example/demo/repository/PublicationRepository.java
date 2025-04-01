@@ -13,7 +13,12 @@ public interface PublicationRepository extends Neo4jRepository<Publication, Stri
                         "RETURN p, collect(a.name) as authors")
         List<Publication> findAllPublicationsWithAuthors();
 
-        @Query("MATCH (p:Publication) WHERE toLower(p.title) STARTS WITH toLower($letter) RETURN p")
+        // @Query("MATCH (p:Publication) WHERE toLower(p.title) STARTS WITH
+        // toLower($letter) RETURN p")
+        // List<Publication> findPublicationsByStartingLetter(String letter);
+        @Query("MATCH (p:Publication)<-[:WROTE]->(a:Author) " +
+                        "WHERE toLower(p.title) STARTS WITH toLower($letter) " +
+                        "RETURN p, COLLECT(a.name) AS authors")
         List<Publication> findPublicationsByStartingLetter(String letter);
 
         @Query("MATCH (p:Publication {title: $title})<-[:WROTE]-(a:Author) " +
