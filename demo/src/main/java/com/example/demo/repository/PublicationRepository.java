@@ -24,4 +24,5 @@ public interface PublicationRepository extends Neo4jRepository<Publication, Stri
         @Query("MATCH (p:Publication {title: $title})<-[:WROTE]-(a:Author) " +
                         "RETURN p, Collect(a.name) as authors")
         Optional<Publication> findPublicationByTitle(String title);
+
 }

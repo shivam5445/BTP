@@ -69,8 +69,8 @@
 
             <ul>
                 <li th:each="author : ${authors}">
-                    <span th:text="${author.name}">Author Name</span>
-                </li>
+                    <a th:href="@{'/' + ${author.name}}" th:text="${author.name}"></a>
+                  </li>
             </ul>
         </div>
         
