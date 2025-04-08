@@ -2,8 +2,12 @@ package com.example.demo.service;
 
 import com.example.demo.repository.AuthorRepository;
 import com.example.demo.entity.Author;
+import com.example.demo.entity.Publication;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,6 +21,10 @@ public class AuthorService {
 
     public List<Author> getAuthorsByLetter(String letter) {
         return authorRepository.findAuthorsByStartingLetter(letter);
+    }
+
+    public List<String> getPublicationTitlesByAuthor(String name) {
+        return authorRepository.findPublicationTitlesByAuthorName(name);
     }
 
     // Additional methods as needed

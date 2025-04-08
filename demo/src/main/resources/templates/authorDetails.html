@@ -1,61 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Academic Publications</title>
-    <link rel="stylesheet" th:href="@{/css/authorDetails.css}"/> 
-  </head>
-  <body>
-    <div id="app" class="publications-container">
-      <header>
-        <h1>Publications</h1>
-      </header>
-
-      <section class="year-section">
-        <h2>2024</h2>
-        <div class="publication">
-          <div class="pub-icons">
-            <span class="icon">📄</span>
-            <span class="icon">🔗</span>
-          </div>
-          <div class="pub-content">
-            <p class="authors">Smith J., Johnson M., Williams R.</p>
-            <p class="title">Framework for Dynamic Graph Algorithms on GPUs</p>
-            <p class="venue">Journal of Computer Science, Vol. 15, pp. 123-145</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="year-section">
-        <h2>2023</h2>
-        <div class="publication">
-          <div class="pub-icons">
-            <span class="icon">📄</span>
-            <span class="icon">🔗</span>
-          </div>
-          <div class="pub-content">
-            <p class="authors">Brown A., Davis C., Miller E.</p>
-            <p class="title">Machine Learning Operators and Models for Graph Processing</p>
-            <p class="venue">International Conference on ML, pp. 234-256</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="year-section">
-        <h2>2022</h2>
-        <div class="publication">
-          <div class="pub-icons">
-            <span class="icon">📄</span>
-            <span class="icon">🔗</span>
-          </div>
-          <div class="pub-content">
-            <p class="authors">Wilson K., Anderson L.</p>
-            <p class="title">Distributed Graph Analytics: Programming Languages</p>
-            <p class="venue">ACM Transactions, Vol. 8, No. 3</p>
-          </div>
-        </div>
-      </section>
-    </div>
-  </body>
+    <title>Author Profile</title>
+</head>
+<body>
+    <h1 th:text="${authorName}">Author Name</h1>
+    <h2>Publications:</h2>
+    <ul>
+        <li th:each="pub : ${publications}" th:text="${pub}">Publication Title</li>
+    </ul>
+</body>
 </html>

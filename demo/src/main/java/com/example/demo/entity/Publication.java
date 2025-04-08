@@ -12,13 +12,15 @@ public class Publication {
     private String title;
     private String year;
     private String link; // Updated field name to match Neo4j
+    // private List<String> coAuthors;
 
     // @Relationship(type = "WROTE", direction = Relationship.Direction.INCOMING)
-    private List<String> authors; // Ensure authors list is properly populated
+    // private List<String> authors; // Ensure authors list is properly populated
     // @Relationship(type = "WROTE", direction = Relationship.Direction.OUTGOING)
     // private List<Author> authors;
     // @Relationship(type = "PUBLISHED_IN", direction =
     // Relationship.Direction.OUTGOING)
+    @Relationship(type = "PUBLISHED_IN", direction = Relationship.Direction.OUTGOING)
     private Venue venue;
 
     // Getters and Setters
@@ -46,13 +48,21 @@ public class Publication {
         this.link = link;
     }
 
-    public List<String> getAuthors() {
-        return authors;
-    }
+    // public List<String> getAuthors() {
+    // return authors;
+    // }
 
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
-    }
+    // public void setAuthors(List<String> authors) {
+    // this.authors = authors;
+    // }
+
+    // public List<String> getCoAuthors() {
+    // return authors;
+    // }
+
+    // public void setCoAuthors(List<String> authors) {
+    // this.authors = authors;
+    // }
 
     public Venue getVenue() {
         return venue;

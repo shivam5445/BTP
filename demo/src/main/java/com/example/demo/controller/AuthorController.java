@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Author;
+import com.example.demo.entity.Publication;
 import com.example.demo.service.AuthorService;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,10 +35,12 @@ public class AuthorController {
         return "authorsView";
     }
 
-    @GetMapping("/{name}")
-    public String showAuthorPage(@PathVariable("name") String name, Model model) {
+    @GetMapping("/{name}/publications")
+    public String getPublicationTitles(@PathVariable String name, Model model) {
+        List<String> titles = authorService.getPublicationTitlesByAuthor(name);
         model.addAttribute("authorName", name);
-        return "authorDetails"; // Loads authorDetails.html from `src/main/resources/templates`
+        model.addAttribute("publications", titles);
+        return "authorDetails";
     }
 
 }
