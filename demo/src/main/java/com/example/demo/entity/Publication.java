@@ -15,7 +15,7 @@ public class Publication {
     // private List<String> coAuthors;
 
     // @Relationship(type = "WROTE", direction = Relationship.Direction.INCOMING)
-    // private List<String> authors; // Ensure authors list is properly populated
+    private List<String> authors; // Ensure authors list is properly populated
     // @Relationship(type = "WROTE", direction = Relationship.Direction.OUTGOING)
     // private List<Author> authors;
     // @Relationship(type = "PUBLISHED_IN", direction =
@@ -48,13 +48,13 @@ public class Publication {
         this.link = link;
     }
 
-    // public List<String> getAuthors() {
-    // return authors;
-    // }
+    public List<String> getAuthors() {
+        return authors;
+    }
 
-    // public void setAuthors(List<String> authors) {
-    // this.authors = authors;
-    // }
+    public void setAuthors(List<String> authors) {
+        this.authors = authors;
+    }
 
     // public List<String> getCoAuthors() {
     // return authors;
