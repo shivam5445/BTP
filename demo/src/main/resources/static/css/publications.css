@@ -184,7 +184,8 @@ body {
 }
 
 .publication-card button {
-    background-color: #3a4bde;
+    background-color: #e3e4ec;
+    text-decoration: none;
     color: white;
     border: none;
     padding: 10px;
@@ -194,8 +195,13 @@ body {
     transition: background-color 0.3s;
 }
 
+.publication-card button a{
+    text-decoration: none;
+    color: rgb(17, 14, 164);
+}
+
 .publication-card button:hover {
-    background-color: #2a38a1;
+    background-color: #484a63;
 }
 
 footer {
