@@ -1,8 +1,11 @@
 package com.example.demo.repository;
 
+import com.example.demo.dto.PublicationByYearDTO;
 import com.example.demo.entity.Publication;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,5 +27,10 @@ public interface PublicationRepository extends Neo4jRepository<Publication, Stri
         @Query("MATCH (p:Publication {title: $title})<-[:WROTE]-(a:Author) " +
                         "RETURN p, Collect(a.name) as authors")
         Optional<Publication> findPublicationByTitle(String title);
+
+        @Query("MATCH (a:Author {name: $name})-[:WROTE]->(p:Publication) " +
+                        "RETURN p.year AS year, collect(p.title) AS publications " +
+                        "ORDER BY p.year DESC")
+        List<PublicationByYearDTO> findPublicationsGroupedByYear(@Param("name") String name);
 
 }

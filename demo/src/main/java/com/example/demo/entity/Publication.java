@@ -23,6 +23,11 @@ public class Publication {
     @Relationship(type = "PUBLISHED_IN", direction = Relationship.Direction.OUTGOING)
     private Venue venue;
 
+    public Publication(String title, String year) {
+        this.title = title;
+        this.year = year;
+    }
+
     // Getters and Setters
     public String getTitle() {
         return title;

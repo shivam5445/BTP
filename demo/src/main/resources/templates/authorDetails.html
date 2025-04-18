@@ -5,10 +5,22 @@
     <title>Author Profile</title>
 </head>
 <body>
-    <h1 th:text="${authorName}">Author Name</h1>
-    <h2>Publications:</h2>
-    <ul>
-        <li th:each="pub : ${publications}" th:text="${pub}">Publication Title</li>
-    </ul>
+    <h2>Publications by <span th:text="${authorName}"></span></h2>
+
+    <!-- Check if there are no publications -->
+    <div th:if="${groupedPublications.isEmpty()}">
+        <p>No publications found.</p>
+    </div>
+
+    <!-- Loop through the grouped publications -->
+    <div th:each="group : ${groupedPublications}">
+        <!-- Display the year -->
+        <h3>Year: <span th:text="${group.year}"></span></h3>
+
+        <!-- Loop through the publications for this year -->
+        <ul>
+            <li th:each="title : ${group.publications}" th:text="${title}"></li>
+        </ul>
+    </div>
 </body>
 </html>

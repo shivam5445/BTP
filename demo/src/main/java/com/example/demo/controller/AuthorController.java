@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.PublicationByYearDTO;
 import com.example.demo.entity.Author;
 import com.example.demo.entity.Publication;
 import com.example.demo.service.AuthorService;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +39,9 @@ public class AuthorController {
 
     @GetMapping("/{name}/publications")
     public String getPublicationTitles(@PathVariable String name, Model model) {
-        List<String> titles = authorService.getPublicationTitlesByAuthor(name);
+        List<PublicationByYearDTO> grouped = authorService.getPublicationsGroupedByYear(name);
         model.addAttribute("authorName", name);
-        model.addAttribute("publications", titles);
+        model.addAttribute("groupedPublications", grouped);
         return "authorDetails";
     }
 
