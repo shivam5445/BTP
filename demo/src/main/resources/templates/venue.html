@@ -28,26 +28,11 @@
         
         <h1>Venue Options</h1>
         
-        <div class="venue-grid">
-            <div class="venue-card">
-                <h3>Venue Name 1</h3>
-                <p><strong>Location:</strong> City, Country</p>
-                <!-- <p><strong>Capacity:</strong> 500</p> -->
-                <button>View Details</button>
+        <div class="main-content">
+            <h1>All Venue Types</h1>
+            <div class="type-container">
+                <div class="type-box" th:each="type : ${types}" th:text="${type}"></div>
             </div>
-            <div class="venue-card">
-                <h3>Venue Name 2</h3>
-                <p><strong>Location:</strong> City, Country</p>
-                <!-- <p><strong>Capacity:</strong> 1000</p> -->
-                <button>View Details</button>
-            </div>
-            <div class="venue-card">
-                <h3>Venue Name 3</h3>
-                <p><strong>Location:</strong> City, Country</p>
-                <!-- <p><strong>Capacity:</strong> 750</p> -->
-                <button>View Details</button>
-            </div>
-            <!-- Add more venue cards as needed -->
         </div>
     </div>
     

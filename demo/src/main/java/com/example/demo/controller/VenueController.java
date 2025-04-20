@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Author;
 import com.example.demo.service.AuthorService;
+import com.example.demo.service.VenueService;
 
 import java.util.List;
 
@@ -13,8 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class VenueController {
 
+    @Autowired
+    private VenueService venueService;
+
     @GetMapping("/venue")
     public String venue(Model model) {
-        return "venue"; // This is the template name
+        List<String> venueTypes = venueService.getDistinctVenueTypes();
+        model.addAttribute("types", venueTypes);
+        return "venue";
     }
 }
