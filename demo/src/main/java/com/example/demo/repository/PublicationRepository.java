@@ -28,8 +28,9 @@ public interface PublicationRepository extends Neo4jRepository<Publication, Stri
                         "RETURN p, Collect(a.name) as authors")
         Optional<Publication> findPublicationByTitle(String title);
 
-        @Query("MATCH (a:Author {name: $name})-[:WROTE]->(p:Publication) " +
-                        "RETURN p.year AS year, collect(p.title) AS publications " +
+        @Query("MATCH (a:Author {name: $name})-[:WROTE]->(p:Publication)-[:PUBLISHED_IN]->(v:Venue) " +
+                        "RETURN p.year AS year, " +
+                        "collect('[' + v.type + '] ' + p.title) AS publications " +
                         "ORDER BY p.year DESC")
         List<PublicationByYearDTO> findPublicationsGroupedByYear(@Param("name") String name);
 
