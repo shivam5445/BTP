@@ -20,21 +20,45 @@ public class PublicationController {
     private final XmlMapper xmlMapper = new XmlMapper(); // XML Mapper for conversion
 
     @GetMapping
-    public String getPublications(@RequestParam(value = "letter", required = false) String letter, Model model) {
-        List<Publication> publications;
+    public String getPublications(
+            @RequestParam(defaultValue = "A") String letter,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model) {
 
-        if (letter != null && !letter.isEmpty()) {
-            publications = publicationService.getPublicationsByLetter(letter);
-            model.addAttribute("selectedLetter", letter);
-        } else {
-            publications = publicationService.getAllPublications();
-            System.out.println("Publications with authors: " + publications);
-            model.addAttribute("selectedLetter", "");
-        }
+        long totalPublications = publicationService.countPublicationsByLetter(letter);
+        int totalPages = (int) Math.ceil((double) totalPublications / size);
+        long skip = (long) page * size;
+
+        List<Publication> publications = publicationService
+                .getPublicationsByLetterWithPagination(letter, skip, size);
 
         model.addAttribute("publications", publications);
+        model.addAttribute("selectedLetter", letter);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
+        model.addAttribute("totalPages", totalPages);
+
         return "publication";
     }
+
+    // @GetMapping
+    // public String getPublications(@RequestParam(value = "letter", required =
+    // false) String letter, Model model) {
+    // List<Publication> publications;
+
+    // if (letter != null && !letter.isEmpty()) {
+    // publications = publicationService.getPublicationsByLetter(letter);
+    // model.addAttribute("selectedLetter", letter);
+    // } else {
+    // publications = publicationService.getAllPublications();
+    // System.out.println("Publications with authors: " + publications);
+    // model.addAttribute("selectedLetter", "");
+    // }
+
+    // model.addAttribute("publications", publications);
+    // return "publication";
+    // }
 
     // New Endpoint to Return XML for a Specific Publication
     @GetMapping(value = "/xml", produces = "application/xml")

@@ -84,6 +84,16 @@
                 </li>
             </ul>
         </div>
+
+        <div class="pagination">
+            <a th:if="${currentPage > 0}"
+               th:href="@{/publication(letter=${selectedLetter}, page=${currentPage - 1}, size=${pageSize})}">Previous</a>
+        
+            <span>Page <span th:text="${currentPage + 1}"></span> of <span th:text="${totalPages}"></span></span>
+        
+            <a th:if="${currentPage + 1 < totalPages}"
+               th:href="@{/publication(letter=${selectedLetter}, page=${currentPage + 1}, size=${pageSize})}">Next</a>
+        </div>
         
     </div>
     

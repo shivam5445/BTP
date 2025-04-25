@@ -12,6 +12,21 @@ import java.util.Optional;
 
 public interface PublicationRepository extends Neo4jRepository<Publication, String> {
 
+        @Query(value = """
+                        MATCH (p:Publication)<-[:WROTE]-(a:Author)
+                        WHERE toLower(p.title) STARTS WITH toLower($letter)
+                        RETURN p, collect(a.name) AS authors
+                        SKIP $skip LIMIT $limit
+                        """)
+        List<Publication> findPublicationsByStartingLetterWithPagination(String letter, long skip, long limit);
+
+        @Query(value = """
+                        MATCH (p:Publication)
+                        WHERE toLower(p.title) STARTS WITH toLower($letter)
+                        RETURN count(p)
+                        """)
+        long countPublicationsByStartingLetter(String letter);
+
         @Query("MATCH (a:Author)-[:WROTE]->(p:Publication) " +
                         "RETURN p, collect(a.name) as authors")
         List<Publication> findAllPublicationsWithAuthors();
