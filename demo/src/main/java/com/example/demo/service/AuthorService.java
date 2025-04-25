@@ -21,13 +21,22 @@ public class AuthorService {
     @Autowired
     private PublicationRepository publicationRepository;
 
+    public List<Author> getAuthorsByLetterWithPagination(String letter, int page, int size) {
+        int skip = page * size;
+        return authorRepository.findAuthorsByStartingLetterWithPagination(letter, skip, size);
+    }
+
+    public int countAuthorsByLetter(String letter) {
+        return authorRepository.countAuthorsByStartingLetter(letter);
+    }
+
     public List<Author> getAllAuthors() {
         return authorRepository.findAll();
     }
 
-    public List<Author> getAuthorsByLetter(String letter) {
-        return authorRepository.findAuthorsByStartingLetter(letter);
-    }
+    // public List<Author> getAuthorsByLetter(String letter) {
+    // return authorRepository.findAuthorsByStartingLetter(letter);
+    // }
 
     public List<String> getPublicationTitlesByAuthor(String name) {
         return authorRepository.findPublicationTitlesByAuthorName(name);

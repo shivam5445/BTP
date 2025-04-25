@@ -22,20 +22,42 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping("/authors")
-    public String getAuthors(@RequestParam(value = "letter", required = false) String letter, Model model) {
-        List<Author> authors;
+    public String getAuthors(
+            @RequestParam(defaultValue = "") String letter,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "30") int size,
+            Model model) {
+        int skip = page * size;
 
-        if (letter != null && !letter.isEmpty()) {
-            authors = authorService.getAuthorsByLetter(letter);
-            model.addAttribute("selectedLetter", letter); // To highlight selected letter
-        } else {
-            authors = authorService.getAllAuthors();
-            model.addAttribute("selectedLetter", ""); // No letter selected
-        }
+        List<Author> authors = authorService.getAuthorsByLetterWithPagination(letter, skip, size);
+        int totalAuthors = authorService.countAuthorsByLetter(letter);
+        int totalPages = (int) Math.ceil((double) totalAuthors / size);
 
         model.addAttribute("authors", authors);
+        model.addAttribute("selectedLetter", letter);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("pageSize", size);
+
         return "authorsView";
     }
+
+    // @GetMapping("/authors")
+    // public String getAuthors(@RequestParam(value = "letter", required = false)
+    // String letter, Model model) {
+    // List<Author> authors;
+
+    // if (letter != null && !letter.isEmpty()) {
+    // authors = authorService.getAuthorsByLetter(letter);
+    // model.addAttribute("selectedLetter", letter); // To highlight selected letter
+    // } else {
+    // authors = authorService.getAllAuthors();
+    // model.addAttribute("selectedLetter", ""); // No letter selected
+    // }
+
+    // model.addAttribute("authors", authors);
+    // return "authorsView";
+    // }
 
     @GetMapping("/{name}/publications")
     public String getPublicationTitles(@PathVariable String name, Model model) {
