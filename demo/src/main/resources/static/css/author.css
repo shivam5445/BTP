@@ -120,7 +120,9 @@ body {
 .author-list:hover {
     transform: translateY(-5px);
 }
-
+.author-list a{
+    text-decoration: none;
+}
 .author-list ul {
     list-style:square;
 }
@@ -146,4 +148,39 @@ footer {
     width: 100%; 
     background-color: #f4f6fc;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* pagination  */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pagination a {
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+.pagination a:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.pagination span {
+    font-size: 1rem;
+    color: #333;
+}
+
+.pagination span span {
+    font-weight: bold;
+    color: #007bff;
 }

@@ -29,7 +29,7 @@
         <h1>Venue Options</h1>
         
         <div class="main-content">
-            <h2>Book Chapter</h2>
+            <h2>Book Chapter</h2><br>
             <div class="alphabet-nav">
                 <a th:href="@{/venue/list(letter='A')}" th:classappend="${selectedLetter == 'A' ? 'active' : ''}">A</a>
                 <a th:href="@{/venue/list(letter='B')}" th:classappend="${selectedLetter == 'B' ? 'active' : ''}">B</a>
@@ -59,7 +59,7 @@
                 <a th:href="@{/venue/list(letter='Z')}" th:classappend="${selectedLetter == 'Z' ? 'active' : ''}">Z</a>
             </div>
             <br>
-            <h2>Conferences | Workshops</h2>
+            <h2>Conferences | Workshops</h2><br>
             <div class="alphabet-nav">
                 <a th:href="@{/venue/list1(letter='A')}" th:classappend="${selectedLetter == 'A' ? 'active' : ''}">A</a>
                 <a th:href="@{/venue/list1(letter='B')}" th:classappend="${selectedLetter == 'B' ? 'active' : ''}">B</a>

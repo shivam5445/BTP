@@ -99,7 +99,27 @@ body {
     flex: 1;
     padding: 30px;
 }
+.alphabet-filter {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+.alphabet-nav {
+    margin-bottom: 20px;
+}
+
+.alphabet-nav a {
+    text-decoration: none;
+    color: #38a683;
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+.alphabet-nav a:hover {
+    text-decoration: underline;
+}
 /* Venue Grid Styling */
 .venue-grid {
     display: grid;
