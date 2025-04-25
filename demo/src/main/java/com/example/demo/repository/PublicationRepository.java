@@ -34,4 +34,7 @@ public interface PublicationRepository extends Neo4jRepository<Publication, Stri
                         "ORDER BY p.year DESC")
         List<PublicationByYearDTO> findPublicationsGroupedByYear(@Param("name") String name);
 
+        @Query("MATCH (p:Publication)-[:PUBLISHED_IN]->(v:Venue) WHERE v.name = $venueName RETURN p")
+        List<Publication> findByVenueName(@Param("venueName") String venueName);
+
 }

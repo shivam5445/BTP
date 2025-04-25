@@ -19,12 +19,6 @@
     </div>
     
     <div class="main-content">
-        <div class="search-bar">
-            <input type="text" placeholder="Search for venues...">
-            <div class="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-        </div>
         
         <h1>Venue Options</h1>
         
@@ -58,36 +52,15 @@
                 <a th:href="@{/venue/list(letter='Y')}" th:classappend="${selectedLetter == 'Y' ? 'active' : ''}">Y</a>
                 <a th:href="@{/venue/list(letter='Z')}" th:classappend="${selectedLetter == 'Z' ? 'active' : ''}">Z</a>
             </div>
-            <br>
-            <h2>Conferences | Workshops</h2>
-            <div class="alphabet-nav">
-                <a th:href="@{/venue/list1(letter='A')}" th:classappend="${selectedLetter == 'A' ? 'active' : ''}">A</a>
-                <a th:href="@{/venue/list1(letter='B')}" th:classappend="${selectedLetter == 'B' ? 'active' : ''}">B</a>
-                <a th:href="@{/venue/list1(letter='C')}" th:classappend="${selectedLetter == 'C' ? 'active' : ''}">C</a>
-                <a th:href="@{/venue/list1(letter='D')}" th:classappend="${selectedLetter == 'D' ? 'active' : ''}">D</a>
-                <a th:href="@{/venue/list1(letter='E')}" th:classappend="${selectedLetter == 'E' ? 'active' : ''}">E</a>
-                <a th:href="@{/venue/list1(letter='F')}" th:classappend="${selectedLetter == 'F' ? 'active' : ''}">F</a>
-                <a th:href="@{/venue/list1(letter='G')}" th:classappend="${selectedLetter == 'G' ? 'active' : ''}">G</a>
-                <a th:href="@{/venue/list1(letter='H')}" th:classappend="${selectedLetter == 'H' ? 'active' : ''}">H</a>
-                <a th:href="@{/venue/list1(letter='I')}" th:classappend="${selectedLetter == 'I' ? 'active' : ''}">I</a>
-                <a th:href="@{/venue/list1(letter='J')}" th:classappend="${selectedLetter == 'J' ? 'active' : ''}">J</a>
-                <a th:href="@{/venue/list1(letter='K')}" th:classappend="${selectedLetter == 'K' ? 'active' : ''}">K</a>
-                <a th:href="@{/venue/list1(letter='L')}" th:classappend="${selectedLetter == 'L' ? 'active' : ''}">L</a>
-                <a th:href="@{/venue/list1(letter='M')}" th:classappend="${selectedLetter == 'M' ? 'active' : ''}">M</a>
-                <a th:href="@{/venue/list1(letter='N')}" th:classappend="${selectedLetter == 'N' ? 'active' : ''}">N</a>
-                <a th:href="@{/venue/list1(letter='O')}" th:classappend="${selectedLetter == 'O' ? 'active' : ''}">O</a>
-                <a th:href="@{/venue/list1(letter='P')}" th:classappend="${selectedLetter == 'P' ? 'active' : ''}">P</a>
-                <a th:href="@{/venue/list1(letter='Q')}" th:classappend="${selectedLetter == 'Q' ? 'active' : ''}">Q</a>
-                <a th:href="@{/venue/list1(letter='R')}" th:classappend="${selectedLetter == 'R' ? 'active' : ''}">R</a>
-                <a th:href="@{/venue/list1(letter='S')}" th:classappend="${selectedLetter == 'S' ? 'active' : ''}">S</a>
-                <a th:href="@{/venue/list1(letter='T')}" th:classappend="${selectedLetter == 'T' ? 'active' : ''}">T</a>
-                <a th:href="@{/venue/list1(letter='U')}" th:classappend="${selectedLetter == 'U' ? 'active' : ''}">U</a>
-                <a th:href="@{/venue/list1(letter='V')}" th:classappend="${selectedLetter == 'V' ? 'active' : ''}">V</a>
-                <a th:href="@{/venue/list1(letter='W')}" th:classappend="${selectedLetter == 'W' ? 'active' : ''}">W</a>
-                <a th:href="@{/venue/list1(letter='X')}" th:classappend="${selectedLetter == 'X' ? 'active' : ''}">X</a>
-                <a th:href="@{/venue/list1(letter='Y')}" th:classappend="${selectedLetter == 'Y' ? 'active' : ''}">Y</a>
-                <a th:href="@{/venue/list1(letter='Z')}" th:classappend="${selectedLetter == 'Z' ? 'active' : ''}">Z</a>
-            </div>
+            
+        </div>
+        <div class="venue-list">
+            
+            <ul>
+                <li th:each="venue : ${bookChapter}">
+                    <a th:href="@{'/venue/' + ${venue}}" th:text="${venue}"></a>
+                </li>
+            </ul>
             
         </div>
     </div>

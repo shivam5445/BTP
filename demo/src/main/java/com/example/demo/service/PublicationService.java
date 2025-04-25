@@ -31,4 +31,8 @@ public class PublicationService {
         return publicationRepository.findPublicationByTitle(title);
     }
 
+    public List<Publication> getPublicationsByVenue(String venueName) {
+        return publicationRepository.findByVenueName(venueName);
+    }
+
 }

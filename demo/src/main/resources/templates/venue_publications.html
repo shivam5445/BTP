@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'Publications in ' + ${venueName}">Venue Publications</title>
+    <link rel="stylesheet" th:href="@{/css/publication.css}">
+</head>
+<body>
+    <h1 th:text="'Publications in ' + ${venueName}"></h1>
+    
+    <ul>
+        <li th:each="pub : ${publications}">
+            <span th:text="${pub.title}"></span>
+            <span th:text="' by ' + ${pub.authors}"></span>
+        </li>
+    </ul>
+</body>
+</html>
