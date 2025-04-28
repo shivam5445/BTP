@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.PublicationByYearDTO;
+import com.example.demo.dto.YearlyPublicationsDTO;
 import com.example.demo.entity.Author;
 import com.example.demo.entity.Publication;
 import com.example.demo.service.AuthorService;
@@ -61,10 +62,9 @@ public class AuthorController {
 
     @GetMapping("/{name}/publications")
     public String getPublicationTitles(@PathVariable String name, Model model) {
-        List<PublicationByYearDTO> grouped = authorService.getPublicationsGroupedByYear(name);
+        List<Map<String, Object>> grouped = authorService.getPublicationsGroupedByYear(name);
         model.addAttribute("authorName", name);
         model.addAttribute("groupedPublications", grouped);
         return "authorDetails";
     }
-
 }

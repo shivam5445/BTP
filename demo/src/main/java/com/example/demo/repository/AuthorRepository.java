@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 import java.util.List;
+import java.util.Map;
 
 public interface AuthorRepository extends Neo4jRepository<Author, String> {
     @Query("MATCH (a:Author) WHERE toLower(a.name) STARTS WITH toLower($letter) RETURN a SKIP $skip LIMIT $limit")
@@ -24,4 +25,11 @@ public interface AuthorRepository extends Neo4jRepository<Author, String> {
     @Query("MATCH (a:Author {name: $name})-[:WROTE]->(p:Publication) RETURN p")
     List<String> findPublicationTitlesByAuthorName(@Param("name") String name);
 
+    @Query("MATCH (author:Author {name: $name})-[:WROTE]->(p:Publication)-[:PUBLISHED_IN]->(v:Venue) " +
+            "WITH p, v, p.year AS publicationYear " +
+            "ORDER BY publicationYear DESC " +
+            "RETURN publicationYear AS year, " +
+            "COLLECT({title: p.title, venueType: v.type}) AS publications " +
+            "ORDER BY year DESC")
+    List<Map<String, Object>> findPublicationsGroupedByYear(@Param("name") String name);
 }

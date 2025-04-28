@@ -7,20 +7,25 @@
 <body>
     <h2>Publications by <span th:text="${authorName}"></span></h2>
 
-    <!-- Check if there are no publications -->
-    <div th:if="${groupedPublications.isEmpty()}">
-        <p>No publications found.</p>
-    </div>
+<!-- Loop through the grouped publications -->
+<div th:each="group : ${groupedPublications}">
+    <!-- Display the year -->
+    <h3>Year: <span th:text="${group.year}"></span></h3>
 
-    <!-- Loop through the grouped publications -->
-    <div th:each="group : ${groupedPublications}">
-        <!-- Display the year -->
-        <h3>Year: <span th:text="${group.year}"></span></h3>
-
-        <!-- Loop through the publications for this year -->
-        <ul>
-            <li th:each="title : ${group.publications}" th:text="${title}"></li>
-        </ul>
-    </div>
+    <!-- Loop through the publications for this year -->
+    <ul>
+        <li th:each="pub : ${group.publications}">
+            <strong>Title:</strong> <span th:text="${pub.title}"></span><br/>
+            <strong>Venue:</strong> <span th:text="${pub.venue}"></span> (<span th:text="${pub.venueType}"></span>)<br/>
+            <strong>Link:</strong> <a th:href="${pub.link}" th:text="${pub.link}"></a><br/>
+            <strong>Authors:</strong> 
+            <span th:each="authorName, iterStat : ${pub.authors}">
+                <span th:text="${authorName}"></span>
+                <span th:if="${!iterStat.last}">, </span> 
+            </span>
+            <hr/>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
