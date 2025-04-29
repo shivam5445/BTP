@@ -8,15 +8,18 @@
     <link rel="stylesheet" th:href="@{/css/venue.css}">
 </head>
 <body>
-    <div class="sidebar">
-        <h2><i class="fa-solid fa-graduation-cap"></i>BTP</h2>
-        <nav>
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>BTP</span>
+        </div>
+        <nav class="nav-links">
             <a th:href="@{/home}"><i class="fas fa-home"></i> Home</a>
             <a th:href="@{/authors}"><i class="fa-solid fa-marker"></i> Author</a>
             <a th:href="@{/publication}"><i class="fas fa-book"></i> Publications</a>
-            <a th:href="@{/venue}" class="active"><i class="fas fa-map-marker-alt"></i> Venue</a>
+            <a th:href="@{/venue}"><i class="fas fa-map-marker-alt"></i> Venue</a>
         </nav>
-    </div>
+    </header>
     
     <div class="main-content">
         <div class="search-bar">

@@ -8,15 +8,19 @@
     <link rel="stylesheet" th:href="@{/css/publications.css}">
 </head>
 <body>
-    <div class="sidebar">
-        <h2><i class="fa-solid fa-graduation-cap"></i>BTP</h2>
-        <nav>
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>BTP</span>
+        </div>
+        <nav class="nav-links">
             <a th:href="@{/home}"><i class="fas fa-home"></i> Home</a>
             <a th:href="@{/authors}"><i class="fa-solid fa-marker"></i> Author</a>
-            <a th:href="@{/publication}" class="active"><i class="fas fa-book"></i> Publications</a>
+            <a th:href="@{/publication}"><i class="fas fa-book"></i> Publications</a>
             <a th:href="@{/venue}"><i class="fas fa-map-marker-alt"></i> Venue</a>
         </nav>
-    </div>
+    </header>
+    
     
     <div class="main-content">
         <div class="search-bar">
@@ -61,7 +65,7 @@
             <a th:href="@{/publication(letter='Z')}" th:classappend="${selectedLetter == 'Z' ? 'active' : ''}">Z</a>
             </div>
 
-        <h1>Latest Publications</h1>
+       
         
         <div class="publications-grid">
             <ul>
