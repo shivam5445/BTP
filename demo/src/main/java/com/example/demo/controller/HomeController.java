@@ -20,8 +20,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 // }
 @Controller
 public class HomeController {
+    @Autowired
+    private AuthorService authorService;
+
     @GetMapping("/home")
     public String home(Model model) {
+        model.addAttribute("publications", authorService.getPublicationCount());
+        model.addAttribute("authors", authorService.getAuthorCount());
+        model.addAttribute("conferences", authorService.getConferenceCount());
+        model.addAttribute("journals", authorService.getJournalCount());
+        model.addAttribute("book", authorService.getBookCount());
         return "home";
     }
 }

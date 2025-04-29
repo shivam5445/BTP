@@ -71,4 +71,24 @@ public class AuthorService {
                 .fetch() // Execute the query and fetch the results
                 .all(); // Get all results
     }
+
+    public Long getPublicationCount() {
+        return authorRepository.findPublicationCount();
+    }
+
+    public Long getAuthorCount() {
+        return authorRepository.findAuthorCount();
+    }
+
+    public Long getConferenceCount() {
+        return authorRepository.findConferenceCount();
+    }
+
+    public Long getBookCount() {
+        return authorRepository.findBookCount();
+    }
+
+    public Long getJournalCount() {
+        return authorRepository.findJournalCount();
+    }
 }

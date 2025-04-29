@@ -155,6 +155,10 @@ body {
     color: #333;
 }
 
+.venue-list a{
+    text-decoration: none;
+
+}
 .venue-card button {
     background-color: #3a4bde;
     color: white;

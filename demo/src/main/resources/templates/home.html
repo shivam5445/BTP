@@ -8,6 +8,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <script  src="https://kit.fontawesome.com/95a02bd20d.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    
+        .dblp-section {
+          background-color: #fdfdfd;
+          padding: 20px 30px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          max-width: 650px;
+          margin: 0 auto;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+    
+        .dblp-section h2 {
+          font-size: 20px;
+          border-bottom: 1px solid #aaa;
+          padding-bottom: 5px;
+          margin-bottom: 15px;
+        }
+    
+        .dblp-stats-list {
+          list-style-type: square;
+          padding-left: 20px;
+          font-size: 16px;
+          line-height: 1.8;
+        }
+    
+        .dblp-chart-placeholder {
+          margin-top: 25px;
+        }
+    
+        .dblp-chart-placeholder canvas {
+          max-width: 100%;
+        }
+    
+        .more-stats-link {
+          margin-top: 10px;
+        }
+    
+        .more-stats-link a {
+          text-decoration: underline;
+          color: #0044cc;
+          font-weight: 500;
+        }
+      </style>
 </head>
 
 <body>
@@ -23,64 +68,22 @@
     </div>
 
     <div class="main-content">
-        <div class="search-bar">
-            <input type="text" placeholder="Search for...">
-            <div class="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-
-        </div>
+        
 
         <h1>Dashboard</h1>
 
-        <div class="container">
-            <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <i class="fa-solid fa-book"></i>
-                    <h3>Published</h3>
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p> Number of publications</p>
-                    <a href="#" type="button">More</a>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <i class="fa-solid fa-user"></i>
-                    <h3>Our Members</h3>
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p>our members </p>
-                    <a href="#" type="button">More</a>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <i class="fa-solid fa-list-check"></i>
-                    <h3>Tasks</h3>
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p>Tasks pending.</p>
-                    <a href="#" type="button">More</a>
-                </div>
-            </div>
-        </div>
-    </div>			
-
+        
+            <ul class="dblp-stats-list">
+              <li><strong># of publications:</strong><span th:text="${publications}"></span></li>
+              <li><strong># of authors:</strong> <span th:text="${authors}"></span></li>
+              <li><strong># of conferences:</strong><span th:text="${conferences}"></li>
+                <li><strong># of journals:</strong> <span th:text="${journals}"></span></li>
+              <li><strong># of book chapters:</strong> <span th:text="${book}"></span></li>
+            </ul>
     <footer>
         <p>Copyright © BTP Website 2024</p>
     </footer>
 </body>
+
 
 </html>

@@ -12,22 +12,28 @@
 <!-- Loop through the grouped publications -->
 <div th:each="group : ${groupedPublications}">
     <!-- Display the year -->
-    <h3>Year: <span th:text="${group.year}"></span></h3>
+    <h3><span th:text="${group.year}"></span></h3>
 
     <!-- Loop through the publications for this year -->
-    <ul>
-        <li th:each="pub : ${group.publications}">
-            [<span th:text="${pub.venueType}"></span>]
-            <a th:href="${pub.link}" target="_blank">🔗</a>
+   
+    <ul class="dblp-list">
+        <li class="dblp-entry" th:each="pub : ${group.publications}">
+          <span class="dblp-meta">
+            [<span class="dblp-citation"th:text="${pub.venueType}"></span>]
+            <i class="fas fa-file-alt"></i>
+            <a th:href="${pub.link}" target="_blank" class="dblp-icon-link"><i class="fas fa-link"></i></a>
+            <i class="fas fa-share-alt"></i>
+          </span>
+      
+          <span class="dblp-authors">
             <span th:each="authorName, iterStat : ${pub.authors}">
-                <span th:text="${authorName}"></span>
-                <span th:if="${!iterStat.last}">, </span> 
-            </span></br>
-            <strong> <span th:text="${pub.title}"></span></strong>
-            
-            <hr/>
+              <span th:text="${authorName}"></span><span th:if="${!iterStat.last}">, </span>
+            </span>
+          </span></br>
+          <strong class="dblp-title"> <span th:text="${pub.title}"></span></strong>
         </li>
-    </ul>
+      </ul>
+      
 </div>
 </body>
 </html>

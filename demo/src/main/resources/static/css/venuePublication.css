@@ -1,0 +1,18 @@
+
+li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+li span:first-child {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+li span:last-child {
+    color: #555;
+    font-style: italic;
+    font-size: 1rem;
+}
