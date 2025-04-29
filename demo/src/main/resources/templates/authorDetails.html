@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Author Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/authorDetails.css}"/> 
 </head>
 <body>
     <h2>Publications by <span th:text="${authorName}"></span></h2>
@@ -15,14 +17,14 @@
     <!-- Loop through the publications for this year -->
     <ul>
         <li th:each="pub : ${group.publications}">
-            <strong>Title:</strong> <span th:text="${pub.title}"></span><br/>
-            <strong>Venue:</strong> <span th:text="${pub.venue}"></span> (<span th:text="${pub.venueType}"></span>)<br/>
-            <strong>Link:</strong> <a th:href="${pub.link}" th:text="${pub.link}"></a><br/>
-            <strong>Authors:</strong> 
+            [<span th:text="${pub.venueType}"></span>]
+            <a th:href="${pub.link}" target="_blank">🔗</a>
             <span th:each="authorName, iterStat : ${pub.authors}">
                 <span th:text="${authorName}"></span>
                 <span th:if="${!iterStat.last}">, </span> 
-            </span>
+            </span></br>
+            <strong> <span th:text="${pub.title}"></span></strong>
+            
             <hr/>
         </li>
     </ul>
