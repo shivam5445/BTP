@@ -23,9 +23,15 @@
     
     <div class="main-content">
         <form th:action="@{/search-authors}" method="get">
-            <input type="text" name="name" placeholder="Type author name..." required>
+            <div class="search-bar">
+                <input type="text" name="name" placeholder="Search for authors..." required>
+                <div class="search-icon" onclick="this.closest('form').submit();">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
             <button type="submit" style="display: none;"></button>
         </form>
+        
         
         <!--
         <div class="alphabet-filter">

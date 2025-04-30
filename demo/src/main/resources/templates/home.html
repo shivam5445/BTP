@@ -10,7 +10,7 @@
     <script  src="https://kit.fontawesome.com/95a02bd20d.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-    
+   
         .dblp-section {
           background-color: #fdfdfd;
           padding: 20px 30px;
@@ -20,33 +20,33 @@
           margin: 0 auto;
           box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-    
+   
         .dblp-section h2 {
           font-size: 20px;
           border-bottom: 1px solid #aaa;
           padding-bottom: 5px;
           margin-bottom: 15px;
         }
-    
+   
         .dblp-stats-list {
           list-style-type: square;
           padding-left: 20px;
           font-size: 16px;
           line-height: 1.8;
         }
-    
+   
         .dblp-chart-placeholder {
           margin-top: 25px;
         }
-    
+   
         .dblp-chart-placeholder canvas {
           max-width: 100%;
         }
-    
+   
         .more-stats-link {
           margin-top: 10px;
         }
-    
+   
         .more-stats-link a {
           text-decoration: underline;
           color: #0044cc;
@@ -70,18 +70,34 @@
 </header>
 
     <div class="main-content">
-        
+       
 
         <h1>Dashboard</h1>
 
-        
-            <ul class="dblp-stats-list">
-              <li><strong># of publications:</strong><span th:text="${publications}"></span></li>
-              <li><strong># of authors:</strong> <span th:text="${authors}"></span></li>
-              <li><strong># of conferences:</strong><span th:text="${conferences}"></li>
-                <li><strong># of journals:</strong> <span th:text="${journals}"></span></li>
-              <li><strong># of book chapters:</strong> <span th:text="${book}"></span></li>
-            </ul>
+       
+            <div class="dashboard-grid">
+  <div class="dashboard-item">
+    <span><strong># of publications</strong></span>
+    <h3 class="count"><span th:text="${publications}"></span></h3>
+  </div>
+  <div class="dashboard-item">
+    <span><strong># of authors</strong></span>
+    <h3 class="count"><span th:text="${authors}"></span></h3>
+  </div>
+  <div class="dashboard-item">
+    <span><strong># of conferences</strong></span>
+    <h3 class="count"><span th:text="${conferences}"></span></h3>
+  </div>
+  <div class="dashboard-item">
+    <span><strong># of journals</strong></span>
+    <h3 class="count"><span th:text="${journals}"></span></h3>
+  </div>
+  <div class="dashboard-item">
+    <span><strong># of book chapters</strong></span>
+    <h3 class="count"><span th:text="${book}"></span></h3>
+  </div>
+</div>
+
     <footer>
         <p>Copyright © BTP Website 2024</p>
     </footer>

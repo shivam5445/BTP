@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.dto.PublicationByYearDTO;
+import com.example.demo.entity.Author;
 import com.example.demo.entity.Publication;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
@@ -51,5 +52,8 @@ public interface PublicationRepository extends Neo4jRepository<Publication, Stri
 
         @Query("MATCH (p:Publication)-[:PUBLISHED_IN]->(v:Venue) WHERE v.name = $venueName RETURN p")
         List<Publication> findByVenueName(@Param("venueName") String venueName);
+
+        @Query("MATCH (p:Publication) WHERE toLower(p.name) CONTAINS toLower($name) RETURN p.name AS name LIMIT 1000")
+        List<Publication> searchPublications(String name);
 
 }
