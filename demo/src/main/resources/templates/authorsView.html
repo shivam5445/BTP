@@ -22,12 +22,11 @@
     </header>
     
     <div class="main-content">
-        <div class="search-bar">
-            <input type="text" placeholder="Search for authors...">
-            <div class="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-        </div>
+        <form th:action="@{/search-authors}" method="get">
+            <input type="text" name="name" placeholder="Type author name..." required>
+            <button type="submit" style="display: none;"></button>
+        </form>
+        
         <!--
         <div class="alphabet-filter">
             <label for="jump-to">Jump to persons with last name prefix: </label>
@@ -71,7 +70,8 @@
             <h2 th:unless="${selectedLetter}">All Authors</h2>
 
             <ul>
-                <li th:each="author : ${authors}">
+                <li th:if="${#lists.isEmpty(authors)}">No Records matches</li>
+                <li th:each="author : ${authors}" th:unless="${#lists.isEmpty(authors)}">
                     <a th:href="@{'/' + ${author.name} + '/publications'}" th:text="${author.name}"></a>
                   </li>
             </ul>
@@ -92,5 +92,36 @@
     <footer>
         <p>Copyright © BTP Website 2024</p>
     </footer>
+   
+    
 </body>
+<script>
+    document.getElementById('searchBox').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const query = e.target.value.trim();
+    
+            if (query.length > 0) {
+                fetch(`/authors/search?name=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const list = document.getElementById('resultList');
+                        list.innerHTML = ''; // clear previous
+    
+                        if (data.length === 0) {
+                            list.innerHTML = '<li>No authors found</li>';
+                            return;
+                        }
+    
+                        data.forEach(author => {
+                            const li = document.createElement('li');
+                            li.textContent = author.name;
+                            list.appendChild(li);
+                        });
+                    })
+                    .catch(err => console.error('Error fetching authors:', err));
+            }
+        }
+    });
+    </script>
 </html>

@@ -60,7 +60,8 @@
         <div class="venue-list">
             
             <ul>
-                <li th:each="venue : ${bookChapter}">
+                <li th:if="${#lists.isEmpty(bookChapter)}">No Records matches</li>
+                <li th:each="venue : ${bookChapter}" th:unless="${#lists.isEmpty(bookChapter)}">
                     <a th:href="@{'/venue/' + ${venue}}" th:text="${venue}"></a>
                 </li>
             </ul>

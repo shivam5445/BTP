@@ -4,10 +4,12 @@ import com.example.demo.dto.PublicationByYearDTO;
 import com.example.demo.dto.YearlyPublicationsDTO;
 import com.example.demo.entity.Author;
 import com.example.demo.entity.Publication;
+// import com.example.demo.repository.AuthorRepository.AuthorNameOnly;
 import com.example.demo.service.AuthorService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AuthorController {
@@ -66,5 +69,19 @@ public class AuthorController {
         model.addAttribute("authorName", name);
         model.addAttribute("groupedPublications", grouped);
         return "authorDetails";
+    }
+
+    @GetMapping("/search-authors")
+    public String searchAuthors(@RequestParam String name,
+            @RequestParam(defaultValue = "0") int Page,
+            @RequestParam(defaultValue = "1000") int size,
+            Model model) {
+
+        List<Author> authors = authorService.getAuthors(name);
+        model.addAttribute("authors", authors);
+        model.addAttribute("currentPage", Page);
+        model.addAttribute("totalPages", 1);
+        model.addAttribute("pageSize", size);
+        return "authorsView";
     }
 }

@@ -57,9 +57,10 @@
             </div>
             
         </div>
-        <div class="venue-list">
+        <div class="venue-list">    
             <ul>
-                <li th:each="venue : ${Conference}">
+                <li th:if="${#lists.isEmpty(Conference)}">No Records matches</li>
+                <li th:each="venue : ${Conference}" th:unless="${#lists.isEmpty(Conference)}">
                     <a th:href="@{'/venue/' + ${venue}}" th:text="${venue}"></a>
                 </li>
             </ul>

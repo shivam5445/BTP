@@ -47,4 +47,7 @@ public interface AuthorRepository extends Neo4jRepository<Author, String> {
 
         @Query("MATCH (v:Venue {type: 'Journal'}) RETURN count(v)")
         Long findJournalCount();
+
+        @Query("MATCH (a:Author) WHERE toLower(a.name) CONTAINS toLower($name) RETURN a.name AS name LIMIT 1000")
+        List<Author> searchAuthors(String name);
 }

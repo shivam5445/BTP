@@ -91,4 +91,8 @@ public class AuthorService {
     public Long getJournalCount() {
         return authorRepository.findJournalCount();
     }
+
+    public List<Author> getAuthors(String name) {
+        return authorRepository.searchAuthors(name);
+    }
 }

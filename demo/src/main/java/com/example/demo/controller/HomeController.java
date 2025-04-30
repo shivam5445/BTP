@@ -23,7 +23,7 @@ public class HomeController {
     @Autowired
     private AuthorService authorService;
 
-    @GetMapping("/home")
+    @GetMapping({ "/", "/home" })
     public String home(Model model) {
         model.addAttribute("publications", authorService.getPublicationCount());
         model.addAttribute("authors", authorService.getAuthorCount());
