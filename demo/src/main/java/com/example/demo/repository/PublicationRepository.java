@@ -53,7 +53,12 @@ public interface PublicationRepository extends Neo4jRepository<Publication, Stri
         @Query("MATCH (p:Publication)-[:PUBLISHED_IN]->(v:Venue) WHERE v.name = $venueName RETURN p")
         List<Publication> findByVenueName(@Param("venueName") String venueName);
 
-        @Query("MATCH (p:Publication) WHERE toLower(p.name) CONTAINS toLower($name) RETURN p.name AS name LIMIT 1000")
+        @Query(value = """
+                        MATCH (p:Publication)<-[:WROTE]-(a:Author)
+                        WHERE toLower(p.title) CONTAINS toLower($name)
+                        RETURN p, collect(a.name) AS authors
+                        LIMIT 1000
+                        """)
         List<Publication> searchPublications(String name);
 
 }

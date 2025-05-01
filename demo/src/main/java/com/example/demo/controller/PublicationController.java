@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Author;
 import com.example.demo.entity.Publication;
 import com.example.demo.service.PublicationService;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -70,5 +71,16 @@ public class PublicationController {
         } else {
             return "<error>Publication not found</error>";
         }
+    }
+
+    @GetMapping("/search")
+    public String searchPublications(@RequestParam String name, Model model) {
+        List<Publication> publications = publicationService.getPublications(name);
+        model.addAttribute("publications", publications);
+        model.addAttribute("searchQuery", name);
+        model.addAttribute("currentPage", 0);
+        model.addAttribute("totalPages", 1); // Because you're limiting to 1000
+        model.addAttribute("pageSize", 1000);
+        return "publication";
     }
 }

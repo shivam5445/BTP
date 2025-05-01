@@ -23,12 +23,16 @@
     
     
     <div class="main-content">
-        <div class="search-bar">
-            <input type="text" placeholder="Search for publications...">
-            <div class="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
+        <form th:action="@{/publication/search}" method="get">
+            <div class="search-bar">
+                <input type="text" name="name" placeholder="Search for publications.." required>
+                <div class="search-icon" onclick="this.closest('form').submit();">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
             </div>
-        </div>
+            <button type="submit" style="display: none;"></button>
+        </form>
+        
         <!--
         <div class="publication-alphabet-filter">
             <label for="jump-to">Jump to publications with last name prefix: </label>
@@ -87,6 +91,7 @@
                     </div>
                 </li>
             </ul>
+            
         </div>
 
         <div class="pagination">
@@ -105,4 +110,33 @@
         <p>Copyright © BTP Website 2024</p>
     </footer>
 </body>
+<script>
+    document.getElementById('searchBox').addEventListener('keydown', function (e) {
+        
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const query = e.target.value.trim();
+            if (query.length > 0) {
+                fetch(`/publication/search?name=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const list = document.getElementById('resultList');
+                        list.innerHTML = '';
+
+                        if (data.length === 0) {
+                            list.innerHTML = '<li>No publications found</li>';
+                            return;
+                        }
+
+                        data.forEach(pub => {
+                            const li = document.createElement('li');
+                            li.textContent = pub.name || pub.title;
+                            list.appendChild(li);
+                        });
+                    })
+                    .catch(err => console.error('Error fetching publications:', err));
+            }
+        }
+    });
+</script>
 </html>
