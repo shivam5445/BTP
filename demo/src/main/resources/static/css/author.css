@@ -59,9 +59,12 @@ body {
 .search-bar {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: center; /* Centers content horizontally */
+    width: 100%;             /* Full width of parent, can set fixed width too */
+    max-width: 500px;        /* Optional: set maximum width */
+    margin: 20px auto;       /* Top/bottom margin and center horizontally */
     background-color: white;
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -70,20 +73,24 @@ body {
     border: none;
     outline: none;
     flex: 1;
-    padding: 10px;
+    padding: 10px 12px;
     font-size: 16px;
 }
 
 .search-icon {
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     background-color: #616feb;
-    border-radius: 21%;
+    border-radius: 50%;
     color: white;
-    font-size: 15px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 10px;
-    padding: 7px;
+    cursor: pointer;
 }
+
 
 .alphabet-filter {
     margin-bottom: 10px;
