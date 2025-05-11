@@ -53,6 +53,18 @@ public class VenueController {
         return "venuelist1";
     }
 
+    @GetMapping("/venue/list2")
+    public String venue2(@RequestParam(value = "letter", required = false) String letter, Model model) {
+        // getBookChapterVenuesByLetter
+        List<String> Journal = List.of();
+        if (letter != null && !letter.isEmpty()) {
+            Journal = venueService.getJournalVenuesByLetter(letter);
+            model.addAttribute("selectedLetter", letter);
+        }
+        model.addAttribute("Journal", Journal);
+        return "venuelist2";
+    }
+
     @GetMapping("/venue/{name}")
     public String venuePublications(@PathVariable("name") String name, Model model) {
         List<Publication> publications = publicationService.getPublicationsByVenue(name);

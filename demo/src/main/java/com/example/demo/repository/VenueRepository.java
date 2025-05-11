@@ -18,4 +18,7 @@ public interface VenueRepository extends Neo4jRepository<Venue, String> {
     @Query("MATCH (v:Venue) WHERE v.type = 'Conference' AND toUpper(v.name) STARTS WITH $letter RETURN DISTINCT v.name AS venueName ORDER BY v.name")
     List<String> findConferenceVenuesByLetter(@Param("letter") String letter);
 
+    // findJournalVenuesByLetter
+    @Query("MATCH (v:Venue) WHERE v.type = 'Journal' AND toUpper(v.name) STARTS WITH $letter RETURN DISTINCT v.name AS venueName ORDER BY v.name")
+    List<String> findJournalVenuesByLetter(@Param("letter") String letter);
 }

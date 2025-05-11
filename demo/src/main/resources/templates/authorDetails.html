@@ -20,9 +20,8 @@
         <li class="dblp-entry" th:each="pub : ${group.publications}">
           <span class="dblp-meta">
             [<span class="dblp-citation"th:text="${pub.venueType}"></span>]
-            <i class="fas fa-file-alt"></i>
             <a th:href="${pub.link}" target="_blank" class="dblp-icon-link"><i class="fas fa-link"></i></a>
-            <i class="fas fa-share-alt"></i>
+            <a th:href="@{/publication/xml(title=${pub.title})}" target="_blank" class="dblp-icon-link"><i class="fas fa-share-alt"></i></a>
           </span>
       
           <span class="dblp-authors">

@@ -30,4 +30,8 @@ public class VenueService {
         return venueRepository.findConferenceVenuesByLetter(letter);
     }
 
+    public List<String> getJournalVenuesByLetter(String letter) {
+        return venueRepository.findJournalVenuesByLetter(letter);
+    }
+
 }

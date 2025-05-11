@@ -9,7 +9,7 @@
     
     <ul>
         <li th:each="pub : ${publications}">
-            <span th:text="${pub.title}"></span>    
+            <a th:href="${pub.link}" th:text="${pub.title}" target="_blank" rel="noopener noreferrer"></a>    
         </li>
     </ul>
 </body>
